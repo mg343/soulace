@@ -1,66 +1,63 @@
-# Bring in deps
-import os 
-from apiKey_noPush import apikey
-
-import streamlit as st 
-from langchain.llms import OpenAI
-from langchain.prompts import PromptTemplate
-from langchain.chains import LLMChain, ConversationChain
 import streamlit as st
-from langchain.chains.conversation.memory import ConversationKGMemory
+from pathlib import Path
+import subprocess
 
-os.environ['OPENAI_API_KEY'] = apikey
+# Define the path to the SoulAce.py file
+soulace_path = Path('SoulAce.py')
 
+st.set_page_config(initial_sidebar_state="collapsed")
 
-
-#model overview
-llm = OpenAI(model_name='text-davinci-003', 
-             temperature=0, 
-             max_tokens = 256)
-
-template = """You will respond as a helpful, accurate, friendly, concise, and kind mental health assistant who responds to prompts with warmness and acceptance, while helping to the best of your ability. You will act within your limits to help, as such do not generate false information, and if an answer is not known, you will respond by suggesting for the seeking of help from professionals. You will only use information contained in the "Relevant Information" section and will not hallucinate.
-
-Relevant Information:
-
-{history}
-
-Human: {input}
-Assistant:"""
-
-prompt = PromptTemplate(input_variables=["history", "input"], template=template)
-
-chatgpt_chain = ConversationChain(
-    llm=llm,
-    verbose=True,
-    prompt=prompt,
-    memory=ConversationKGMemory(llm=llm),
+st.markdown(
+    """
+<style>
+    [data-testid="collapsedControl"] {
+        display: none
+    }
+</style>
+""",
+    unsafe_allow_html=True,
 )
 
 
+# Create a Streamlit app
+st.title("""SoulAce Guidlines
+    """)
 
-# App framework
-st.title('GPT App')
+# Add a disclaimer
+disclaimer = """
+**General Disclaimer:**
+Soulace is an informational and supportive tool designed to provide information on mental health topics. It is not a substitute for professional medical advice or treatment.
 
+**Not a Replacement for Professional Help:**
+Soulace is not a licensed therapist or mental health professional. It does not replace the advice, diagnosis, or treatment provided by qualified healthcare providers.
 
+**Emergency Situations:**
+In cases of emergencies or if you are in crisis, please call emergency services or a crisis helpline. Soulace is not equipped to handle immediate life-threatening situations.
 
-#message structure
-if "messages" not in st.session_state.keys(): # Initialize the chat message history
-    st.session_state.messages = [
-        {"role": "assistant", "content": "Ask me a question about mental health!"}
-    ]
+**Information Accuracy:**
+The information provided by Soulace is based on data and may not always be up to date. Always verify any information with a healthcare professional.
 
-if prompt := st.chat_input("Your question"): # Prompt for user input and save to chat history
-    st.session_state.messages.append({"role": "user", "content": prompt})
+**Informed Decisions:**
+SoulAce should be considered a starting point for understanding mental health topics, and its responses are not a replacement for the expertise of mental health professionals.
 
-for message in st.session_state.messages: # Display the prior chat messages
-    with st.chat_message(message["role"]):
-        st.write(message["content"])
+**User Responsibility:**
+Users are responsible for their interactions with Soulace and their mental health decisions. We are not liable for the consequences of these decisions.
 
-# If last message is not from assistant, generate a new response
-if st.session_state.messages[-1]["role"] != "assistant":
-    with st.chat_message("assistant"):
-        with st.spinner("Thinking..."):
-            response = chatgpt_chain.predict(input=prompt)
-            st.write(response)
-            message = {"role": "assistant", "content": response}
-            st.session_state.messages.append(message) # Add response to message history
+**Limitations of AI:**
+Soulace is an AI model and may not fully understand or address the complexity of individual mental health issues. It should be used as a supplementary resource.
+
+**Disclaimer Updates:**
+These disclaimers may be updated from time to time. Please check for the latest version on our website.
+
+**User Consent:**
+By using Soulace, you acknowledge that you have read and understood these disclaimers and agree to abide by our terms of service and privacy policy.
+"""
+
+st.write(disclaimer)
+
+# Add a checkbox to agree to the usage rules
+agree_to_rules = st.checkbox("I have read and agree to the usage rules of the SoulAce. Checking this box will open the SoulAce resource.")
+
+if agree_to_rules:
+    # Run the SoulAce subapp
+    subprocess.run(["streamlit", "run", str(soulace_path)])
