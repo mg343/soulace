@@ -3,7 +3,6 @@ from langchain.llms import OpenAI
 from langchain.chains import LLMChain
 from langchain.prompts import PromptTemplate
 import streamlit as st
-import os
 bot=[]
 user=[]
 
@@ -17,6 +16,17 @@ user=[]
 
 st.set_page_config(page_title="SoulAce", page_icon="🤖")
 st.sidebar.header("SoulAce")
+
+
+# Function to save a new message to a file
+def save_message(user, bot):
+    with open("message_history.txt", "a") as file:
+        file.write(f"User: {user}\n\nBot: {bot}\n\n")
+
+# Function to load the message history from a file
+def load_message_history():
+    with open("message_history.txt", "r") as file:
+        return file.read()
 
 
 def q_a(inputp):
@@ -38,11 +48,6 @@ def q_a(inputp):
         input=inputp
     )
     return output
-
-
-# Function to delete the message history file
-def delete_message_history_file():
-    os.remove("message_history.txt")
 
 
 # App framework
