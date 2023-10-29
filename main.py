@@ -1,6 +1,8 @@
 import streamlit as st
 from pathlib import Path
 import subprocess
+import streamlit_extras
+from streamlit_extras.switch_page_button import switch_page
 
 # Define the path to the SoulAce.py file
 soulace_path = Path('SoulAce.py')
@@ -60,4 +62,4 @@ agree_to_rules = st.checkbox("I have read and agree to the usage rules of the So
 
 if agree_to_rules:
     # Run the SoulAce subapp
-    subprocess.run(["streamlit", "run", str(soulace_path)])
+    switch_page('SoulAce')
