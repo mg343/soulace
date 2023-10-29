@@ -9,8 +9,8 @@ user=[]
 
 
 #------------------ DELETE BEFORE COMMITING ------------------------
-from apiKey_noPush import apikey
-os.environ["OPENAI_API_KEY"]=apikey
+# from apiKey_noPush import apikey
+# os.environ["OPENAI_API_KEY"]=apikey
 #------------------ DELETE BEFORE COMMITING ------------------------
 
 
