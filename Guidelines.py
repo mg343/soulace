@@ -4,9 +4,6 @@ import subprocess
 import streamlit_extras
 from streamlit_extras.switch_page_button import switch_page
 
-# Define the path to the SoulAce.py file
-soulace_path = Path('SoulAce.py')
-
 st.set_page_config(initial_sidebar_state="collapsed")
 
 st.markdown(

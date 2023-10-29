@@ -4,6 +4,7 @@ from langchain.chains import LLMChain
 from langchain.prompts import PromptTemplate
 import streamlit as st
 import os
+from streamlit_extras.switch_page_button import switch_page
 bot=[]
 user=[]
 
@@ -56,10 +57,23 @@ def q_a(inputp):
 
 
 # App framework
-st.title('SoulAce, your Mental Health ChatBot')
+st.title('SoulAce: Mental Health Assistant')
+
+with st.expander("SoulAce Guidelines", expanded=True):
+    st.write("\n\n**SoulAce is programmed as a 'single session' chatbot, to ensure user security and reduce environmental impact.**\nAs a 'single session' bot, **SoulAce does not preserve memory between responses.**\nTo allow SoulAce to respond as best as possible, **please explain your question as in-depth as possible.**")
+    st.write("\n\nFree instance of the SoulAce mental-health resource. Responses are not a replacement for the expertise of mental health professionals.")
+    st.write("\n\nUsers are responsible for their interactions with Soulace and their mental health decisions. We are not liable for the consequences of these decisions.")
+    if st.button("View SoulAce Usage Guidelines"):
+        switch_page("Guidelines")
+
 prompt = st.text_input('Ask any question about mental health here:', max_chars=256) 
 
 # Show stuff to the screen if there's a prompt
 if prompt:
     response = q_a(prompt)
     st.write(response) 
+    if st.button("For more help from recognized organizations, visit the Resources page by clicking here."):
+        switch_page("Resources")
+else:
+    if st.button("For more help from recognized organizations, visit the Resources page by clicking here."):
+        switch_page("Resources")
