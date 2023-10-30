@@ -19,7 +19,7 @@ st.markdown(
 
 
 # Create a Streamlit app
-st.title("""SoulAce Guidlines
+st.title("""SoulAce Guidelines
     """)
 
 # Add a disclaimer

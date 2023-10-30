@@ -59,14 +59,14 @@ def q_a(inputp):
 # App framework
 st.title('SoulAce: Mental Health Assistant')
 
-with st.expander("SoulAce Guidelines", expanded=True):
-    st.write("\n\n**SoulAce is programmed as a 'single session' chatbot, to ensure user security and reduce environmental impact.**\nAs a 'single session' bot, **SoulAce does not preserve memory between responses.**\nTo allow SoulAce to respond as best as possible, **please explain your question as in-depth as possible.**")
+with st.expander("SoulAce Usage Instructions", expanded=True):
+    st.write("\n\n**SoulAce is programmed as a 'single session' chatbot, to ensure user security and reduce environmental impact.**\nAs a 'single session' bot, **SoulAce does not preserve memory between responses.**\nTo allow SoulAce to respond as best as possible, **please explain your question as in-depth as possible.**\nIf outputted information is crucial to the question, such as in the case of expanding on a concept, **it is advised to prompt SoulAce with a summarized version of the response in question, along with your specific question,** assuming the summary is within the text limit.")
     st.write("\n\nFree instance of the SoulAce mental-health resource. Responses are not a replacement for the expertise of mental health professionals.")
     st.write("\n\nUsers are responsible for their interactions with Soulace and their mental health decisions. We are not liable for the consequences of these decisions.")
     if st.button("View SoulAce Usage Guidelines"):
         switch_page("Guidelines")
 
-prompt = st.text_input('Ask any question about mental health here:', max_chars=256) 
+prompt = st.text_input('Ask SoulAce a question about mental health here:', max_chars=256) 
 
 # Show stuff to the screen if there's a prompt
 if prompt:
