@@ -71,9 +71,41 @@ prompt = st.text_input('Ask SoulAce a question about mental health here:', max_c
 # Show stuff to the screen if there's a prompt
 if prompt:
     response = q_a(prompt)
-    st.write(response) 
+    st.write(response)
     if st.button("For more help from recognized organizations, visit the Resources page by clicking here."):
         switch_page("Resources")
+    with st.expander("To reduce economical and environmental impact, Users are recommended to limit usage of SoulAce.", expanded=False):
+        st.write("""
+SoulAce is powered by large servers, and **overusage of the resource can cause damage to the environment** around the server setup.""")
+        st.write("""
+**In accordance with our pro-environment policies, users are recommended to limit their usage of SoulAce.**""")
+        st.write("""
+As a free resource, there is **no actual boundary to how much SoulAce can be prompted.**""")
+        st.write("""
+
+However, **every run of SoulAce has both a financial, and environmental cost.** """)
+        st.write("""
+
+**Steps implemented at every step in the development process attempt to minimize this impact, but running any app, let alone providing users with speedy responses, requires heavy server load.**""")
+        st.write("""
+
+Therefore, **reducing the amount of prompts SoulAce handles is advised.**""")
 else:
     if st.button("For more help from recognized organizations, visit the Resources page by clicking here."):
         switch_page("Resources")
+    with st.expander("To reduce economical and environmental impact, Users are recommended to limit usage of SoulAce.", expanded=False):
+        st.write("""
+SoulAce is powered by large servers, and **overusage of the resource can cause damage to the environment** around the server setup.""")
+        st.write("""
+**In accordance with our pro-environment policies, users are recommended to limit their usage of SoulAce.**""")
+        st.write("""
+As a free resource, there is **no actual boundary to how much SoulAce can be prompted.**""")
+        st.write("""
+
+However, **every run of SoulAce has both a financial, and environmental cost.** """)
+        st.write("""
+
+**Steps implemented at every step in the development process attempt to minimize this impact, but running any app, let alone providing users with speedy responses, requires heavy server load.**""")
+        st.write("""
+
+Therefore, **reducing the amount of prompts SoulAce handles is advised.**""")
