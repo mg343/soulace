@@ -5,6 +5,8 @@ from langchain.prompts import PromptTemplate
 import streamlit as st
 import os
 from streamlit_extras.switch_page_button import switch_page
+from PIL import Image
+
 bot=[]
 user=[]
 
@@ -17,7 +19,9 @@ user=[]
 
 
 st.set_page_config(page_title="SoulAce", page_icon="🤖")
-st.sidebar.header("SoulAce")
+
+logo = Image.open('soulaceBG.png')
+st.sidebar.image(logo, use_column_width=True)
 
 # try:
 #     os.remove('message_history.txt')

@@ -1,9 +1,14 @@
 import streamlit as st
+from PIL import Image
+
 
 st.set_page_config(page_title="Resources")
 
-st.sidebar.header("Resources")
 st.title("Resources")
+
+logo = Image.open('soulaceBG.png')
+st.sidebar.image(logo, use_column_width=True)
+
 
 col1, col2 = st.columns(2)
 

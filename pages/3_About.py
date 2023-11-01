@@ -4,8 +4,10 @@ from PIL import Image
 
 st.set_page_config(page_title="About")
 
-st.sidebar.header("About")
 st.title("About")
+
+logo = Image.open('soulaceBG.png')
+st.sidebar.image(logo, use_column_width=True)
 
 st.subheader("Overview")
 st.write("**SoulAce** was developed with the vision of a resource capable of **allowing those struggling with mental health problems to get access to tools that would have previously been challenging to come by.**")
