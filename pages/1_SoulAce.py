@@ -70,8 +70,11 @@ prompt = st.text_input('Ask SoulAce a question about mental health here:', max_c
 
 # Show stuff to the screen if there's a prompt
 if prompt:
-    response = q_a(prompt)
-    st.write(response)
+    try:
+        response = q_a(prompt)
+        st.write(response)
+    except:
+        st.write("SoulAce servers have reached peak capacity, please come back later.")
     if st.button("For more help from recognized organizations, visit the Resources page by clicking here."):
         switch_page("Resources")
     with st.expander("To reduce economical and environmental impact, Users are recommended to limit usage of SoulAce.", expanded=False):
